@@ -1,7 +1,7 @@
-class TaskListView {
+class TaskListView extends View {
 
-    constructor (viewElement) {
-        this._viewElement = viewElement;
+    constructor(viewElement) {
+        super(viewElement);
     }
 
     _template(model) {
@@ -33,9 +33,5 @@ class TaskListView {
             </tfoot>
         </table>
         `;
-    }
-
-    update(model) {
-        this._viewElement.innerHTML = this._template(model);
     }
 }
