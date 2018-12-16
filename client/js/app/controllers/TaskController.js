@@ -15,26 +15,15 @@ class TaskController {
         this._taskList = new Bind(
             new TaskList(), 
             this._taskListView, 
-            ['addTask', 'emptiesList']
+            'addTask', 'emptiesList'
         );
-        // ProxyFactory.create(
-        //     new TaskList(), 
-        //     ['addTask', 'emptiesList'],
-        //     model => this._taskListView.update(model)
-        // ); 
         
         this._messageView = new MessageView($('#messageView'));
         this._message = new Bind(
             new Message(), 
             this._messageView, 
-            ['text']
+            'text'
         );
-        
-        // ProxyFactory.create(
-        //     new Message(),
-        //     ['text'] ,
-        //     model => this._messageView.update(model)
-        // );
 
         this._taskListView.update(this._taskList);
         this._messageView.update(this._message);
