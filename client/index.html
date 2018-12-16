@@ -10,7 +10,9 @@
     
     <h1 class="text-center">Lista de tarefas</h1>
     
-    <form class="form" onsubmit="negociacaoController.adiciona(event)">
+    <div id="messageView"></div>
+
+    <form class="form" onsubmit="negociacaoController.addTask(event)">
         
         <div class="form-group">
             <label for="date">Data</label>
@@ -56,10 +58,12 @@
 
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/enums/PriorityEnum.js"></script>
+    <script src="js/app/views/TaskView.js"></script>
+    <script src="js/app/views/MessageView.js"></script>
     <script src="js/app/models/Task.js"></script>
     <script src="js/app/models/TaskList.js"></script>
+    <script src="js/app/models/Message.js"></script>
     <script src="js/app/controllers/TaskController.js"></script>
-    <script src="js/app/views/TaskView.js"></script>
 
     <script> const negociacaoController = new TaskController(); </script>
     
