@@ -10,8 +10,12 @@ class TaskController {
 
         this._taskList = new TaskList();
         this._taskView = new TaskListView($('#taskView'));
+        
+        this._message = new Message();
+        this._messageView = new MessageView($('#messageView'));
 
         this._taskView.update(this._taskList);
+        this._messageView.update(this._message);
     }
 
     _createTask() {
@@ -30,10 +34,19 @@ class TaskController {
         this._inputDate.focus();
     }
 
-    adiciona(event) {
+    _updateMessage(text) {
+        this._message.text = text;
+        this._messageView.update(this._message);
+    }
+
+    addTask(event) {
         event.preventDefault();
         this._taskList.addTask(this._createTask());
         this._taskView.update(this._taskList);
+        this._updateMessage("Tarefa adicionada com sucesso.");
         this._clearForm();
     }
+
+
+
 }
