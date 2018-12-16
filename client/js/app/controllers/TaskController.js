@@ -1,7 +1,10 @@
 class TaskController {
 
     constructor() {
-        
+       this._onInit();
+    }
+
+    _onInit() {
         let $ = document.querySelector.bind(document);
 
         this._inputDate = $('#date');
@@ -46,7 +49,4 @@ class TaskController {
         this._updateMessage("Tarefa adicionada com sucesso.");
         this._clearForm();
     }
-
-
-
 }

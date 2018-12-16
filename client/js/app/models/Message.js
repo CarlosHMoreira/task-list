@@ -12,5 +12,4 @@ class Message {
     set text(text) {
         this._text = text;
     }
-    
 }
