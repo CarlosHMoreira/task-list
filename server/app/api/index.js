@@ -8,19 +8,23 @@ var dateRetrasada = new Date();
 dateRetrasada.setDate(dataAtual.getDate() - 14);
 
 var tarefas = [
-      { date: dateRetrasada, name: 'Dentista Clarice', priority: 0},
-      { date: dataAnterior, name: 'Procurar faculdade', priority: 1},
-      { date: dataAtual, name: 'Tentar resarcir plano dentário', priority: 2},
-      { date: dataAtual, name: 'Dar vacinas da Beerus', priority: 3},
-      { date: dataAtual, name: 'Arrumar clientes', priority: 4},
-      { date: dateRetrasada, name: 'Ajeitar postura', priority: 4},
+      { date: dateRetrasada, name: 'Dentista Clarice', priority: 0, done: true},
+      { date: dataAnterior, name: 'Procurar faculdade', priority: 1,  done: true},
+      { date: dataAtual, name: 'Tentar resarcir plano dentário', priority: 2, done: true},
+      { date: dataAtual, name: 'Dar vacinas da Beerus', priority: 3, done: true},
+      { date: dataAtual, name: 'Arrumar clientes', priority: 4, done: true},
+      { date: dateRetrasada, name: 'Ajeitar postura', priority: 4, done: true},
     ];
 
+api.todas = function (req, res) {
+    res.json(tarefas);
+}
 
 api.listaSemana = function(req, res) {
     var tarefasAtuais = tarefas.filter(function(tarefa) {
         return tarefa.data > dataAnterior;
     });
+    console.log(tarefasAtuais);
     res.json(tarefasAtuais);
 };
 

@@ -14,5 +14,6 @@ module.exports  = function(app) {
         .get(api.listaRetrasada);  
         
     app.route('/tarefas')
+        .get(api.todas)
         .post(api.cadastraTarefa);          
 };
