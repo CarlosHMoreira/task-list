@@ -11,22 +11,17 @@ class TaskController {
         this._inputName = $('#name');
         this._inputPriority = $('#priority');
 
-        this._taskListView = new TaskListView($('#taskView'));
         this._taskList = new Bind(
             new TaskList(), 
-            this._taskListView, 
+            new TaskListView($('#taskView')), 
             'addTask', 'emptiesList'
         );
         
-        this._messageView = new MessageView($('#messageView'));
         this._message = new Bind(
             new Message(), 
-            this._messageView, 
+            new MessageView($('#messageView')), 
             'text'
         );
-
-        this._taskListView.update(this._taskList);
-        this._messageView.update(this._message);
     }
 
     _createTask() {
