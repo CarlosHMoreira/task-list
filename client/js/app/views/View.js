@@ -5,7 +5,6 @@ class View {
     }
 
     update(model) {
-
         this._viewElement.innerHTML = this.template(model);
     }
 
