@@ -1,11 +1,15 @@
 class View {
 
-    constructor (viewElement) {
+    constructor(viewElement) {
         this._viewElement = viewElement;
     }
 
     update(model) {
 
-        this._viewElement.innerHTML = this._template(model);
+        this._viewElement.innerHTML = this.template(model);
+    }
+
+    template() { 
+        throw new Error('Method template should be implemented');
     }
 }

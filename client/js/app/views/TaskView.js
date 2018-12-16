@@ -1,10 +1,6 @@
 class TaskListView extends View {
 
-    constructor(viewElement) {
-        super(viewElement);
-    }
-
-    _template(model) {
+    template(model) {
         return `
         <table class="table table-hover table-bordered">
             <thead>
