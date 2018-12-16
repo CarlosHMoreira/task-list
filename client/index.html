@@ -40,7 +40,7 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button">
+        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.importTasks()">
             Importar tarefas
         </button>
         <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.emptiesTaskList()">
@@ -58,6 +58,7 @@
 
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/helpers/Bind.js"></script>
+    <script src="js/app/services/TaskService.js"></script>
     <script src="js/app/enums/PriorityEnum.js"></script>
     <script src="js/app/views/View.js"></script>
     <script src="js/app/views/TaskView.js"></script>

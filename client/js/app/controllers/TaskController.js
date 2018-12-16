@@ -22,6 +22,8 @@ class TaskController {
             new MessageView($('#messageView')), 
             'text'
         );
+
+        this._service = new TaskService();
     }
 
     _createTask() {
@@ -40,19 +42,47 @@ class TaskController {
         this._inputDate.focus();
     }
 
-    _updateMessage(text) {
+    _updateMessage(text='') {
         this._message.text = text;
+        setTimeout(() => {
+            this._updateMessage();
+        }, 3000);
     }
 
     addTask(event) {
         event.preventDefault();
-        this._taskList.addTask(this._createTask());
-        this._updateMessage("Tarefa adicionada com sucesso.");
-        this._clearForm();
+        const task = {
+            date: DateHelper.stringToDate(this._inputDate.value),
+            name: this._inputName.value,
+            priority: this._inputPriority.value
+        }
+
+        this._service.addTask(task, (error, newTask) => {
+            if(error) {
+                this._updateMessage(error);
+                return;
+            }
+    
+            this._taskList.addTask(newTask);
+            this._updateMessage("Tarefa adicionada com sucesso.");
+            this._clearForm();
+        });
     }
 
     emptiesTaskList() {
         this._taskList.emptiesList();
         this._updateMessage('Tarefas removidas com sucesso.');
+    }
+
+    importTasks() {
+       this._service.importTasks((err, tasks) => {
+            if(error) {
+                this._updateMessage(error);
+                return;
+            }
+    
+            tasks.forEach(task => this._taskList.addTask(task));
+            this._updateMessage('Tarefas importadas com sucesso');
+        });
     }
 }
