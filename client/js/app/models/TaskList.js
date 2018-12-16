@@ -1,6 +1,7 @@
 class TaskList {
-    constructor() {
+    constructor(viewRenderer) {
         this._tasks = [];
+        this._viewRenderer = viewRenderer;
     }
 
     get tasks() {
@@ -8,7 +9,12 @@ class TaskList {
     }
 
     addTask(task) {
-        
         this._tasks.push(task);
+        this._viewRenderer(this);
+    }
+
+    emptiesList() {
+        this._tasks = [];
+        this._viewRenderer(this);
     }
 }
