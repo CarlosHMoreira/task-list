@@ -12,18 +12,29 @@ class TaskController {
         this._inputPriority = $('#priority');
 
         this._taskListView = new TaskListView($('#taskView'));
-        this._taskList = ProxyFactory.create(
+        this._taskList = new Bind(
             new TaskList(), 
-            ['addTask', 'emptiesList'],
-            model => this._taskListView.update(model)
-        ); 
+            this._taskListView, 
+            ['addTask', 'emptiesList']
+        );
+        // ProxyFactory.create(
+        //     new TaskList(), 
+        //     ['addTask', 'emptiesList'],
+        //     model => this._taskListView.update(model)
+        // ); 
         
         this._messageView = new MessageView($('#messageView'));
-        this._message = ProxyFactory.create(
-            new Message(),
-            ['text'] ,
-            model => this._messageView.update(model)
+        this._message = new Bind(
+            new Message(), 
+            this._messageView, 
+            ['text']
         );
+        
+        // ProxyFactory.create(
+        //     new Message(),
+        //     ['text'] ,
+        //     model => this._messageView.update(model)
+        // );
 
         this._taskListView.update(this._taskList);
         this._messageView.update(this._message);
@@ -51,7 +62,6 @@ class TaskController {
 
     addTask(event) {
         event.preventDefault();
-        console.log('Task Created');
         this._taskList.addTask(this._createTask());
         this._updateMessage("Tarefa adicionada com sucesso.");
         this._clearForm();
