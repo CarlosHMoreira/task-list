@@ -14,4 +14,8 @@ class TaskList {
     emptiesList() {
         this._tasks = [];
     }
+
+    totalFinished() {
+        return this._tasks.reduce((count, task) => task.done ? ++count : count, 0)
+    }
 }

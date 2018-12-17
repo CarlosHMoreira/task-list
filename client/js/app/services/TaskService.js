@@ -31,7 +31,7 @@ class TaskService {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     const response = JSON.parse(xhr.responseText);
-                    const task = new Task(new Date(), response.name, response.priority, response.done);
+                    const task = new Task(new Date(response.date), response.name, response.priority, response.done);
                     callback(null, task);
                 } else {
                     callback('Não foi possível criar a tarefa', xhr.responseText);

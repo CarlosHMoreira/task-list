@@ -25,7 +25,7 @@ class TaskListView extends View {
             
             <tfoot>
                 <td colspan="3"></td>
-                <td>${model.tasks.reduce((count, task) => task.done ? ++count : count, 0)}</td>
+                <td>${model.totalFinished()}</td>
             </tfoot>
         </table>
         `;

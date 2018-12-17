@@ -52,7 +52,7 @@ class TaskController {
     addTask(event) {
         event.preventDefault();
         const task = {
-            date: DateHelper.stringToDate(this._inputDate.value),
+            date: this._inputDate.value.,
             name: this._inputName.value,
             priority: this._inputPriority.value
         }
@@ -75,7 +75,7 @@ class TaskController {
     }
 
     importTasks() {
-       this._service.importTasks((err, tasks) => {
+       this._service.importTasks((error, tasks) => {
             if(error) {
                 this._updateMessage(error);
                 return;
