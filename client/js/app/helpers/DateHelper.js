@@ -6,7 +6,7 @@ class DateHelper {
 
     static stringToDate(dateString) {
 
-        if(!/^\d{4}-\d{2}-\d{2}$/.test(dateString))
+        if(!/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) 
             throw new Error('Method stringToDate expects a string in the format yyyy-mm-dd');
 
         return new Date(
