@@ -52,7 +52,7 @@ class TaskController {
     addTask(event) {
         event.preventDefault();
         const task = {
-            date: this._inputDate.value.,
+            date: this._inputDate.value,
             name: this._inputName.value,
             priority: this._inputPriority.value
         }
@@ -75,14 +75,11 @@ class TaskController {
     }
 
     importTasks() {
-       this._service.importTasks((error, tasks) => {
-            if(error) {
-                this._updateMessage(error);
-                return;
-            }
+       this._service.importTasks().then(tasks => {
     
             tasks.forEach(task => this._taskList.addTask(task));
             this._updateMessage('Tarefas importadas com sucesso');
-        });
+        })
+        .catch(error => this._updateMessage(error));
     }
 }
