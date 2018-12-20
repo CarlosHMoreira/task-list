@@ -51,22 +51,19 @@ class TaskController {
 
     addTask(event) {
         event.preventDefault();
-        const task = {
-            date: this._inputDate.value,
-            name: this._inputName.value,
-            priority: this._inputPriority.value
+        // Using try-catch because DateHelper can throw exception
+        try {
+            this._service
+            .addTask(this._createTask())
+            .then( taskCreated => {
+                this._taskList.addTask(taskCreated);
+                this._clearForm();
+                this._updateMessage("Tarefa adicionada com sucesso.");
+            })
+            .catch(error => this._updateMessage(error));
+        } catch(error) {
+            this._updateMessage(error);
         }
-
-        this._service.addTask(task, (error, newTask) => {
-            if(error) {
-                this._updateMessage(error);
-                return;
-            }
-    
-            this._taskList.addTask(newTask);
-            this._updateMessage("Tarefa adicionada com sucesso.");
-            this._clearForm();
-        });
     }
 
     emptiesTaskList() {
