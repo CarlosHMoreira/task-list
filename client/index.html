@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Tarefas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body class="container">
     
@@ -16,7 +16,7 @@
         
         <div class="form-group">
             <label for="date">Data</label>
-            <input type="date" id="date" class="form-control" required autofocus/>        
+            <input type="text" id="date" placeholder="dd/mm/aaaa" class="form-control" required autofocus/>        
         </div>    
         
         <div class="form-group">
@@ -56,20 +56,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script src="js/app/helpers/DateHelper.js"></script>
-    <script src="js/app/helpers/Bind.js"></script>
-    <script src="js/app/models/Header.js"></script>
-    <script src="js/app/services/HttpService.js"></script>
-    <script src="js/app/services/TaskService.js"></script>
-    <script src="js/app/enums/PriorityEnum.js"></script>
-    <script src="js/app/views/View.js"></script>
-    <script src="js/app/views/TaskListView.js"></script>
-    <script src="js/app/views/MessageView.js"></script>
-    <script src="js/app/models/Task.js"></script>
-    <script src="js/app/models/TaskList.js"></script>
-    <script src="js/app/models/Message.js"></script>
-    <script src="js/app/services/ProxyFactory.js"></script>
-    <script src="js/app/controllers/TaskController.js"></script>
+    <script src="./js/app/helpers/DateHelper.js"></script>
+    <script src="./js/app/helpers/Bind.js"></script>
+    <script src="./js/app/models/Header.js"></script>
+    <script src="./js/app/services/HttpService.js"></script>
+    <script src="./js/app/services/TaskService.js"></script>
+    <script src="./js/app/enums/PriorityEnum.js"></script>
+    <script src="./js/app/views/View.js"></script>
+    <script src="./js/app/views/TaskListView.js"></script>
+    <script src="./js/app/views/MessageView.js"></script>
+    <script src="./js/app/models/Task.js"></script>
+    <script src="./js/app/models/TaskList.js"></script>
+    <script src="./js/app/models/Message.js"></script>
+    <script src="./js/app/services/ProxyFactory.js"></script>
+    <script src="./js/app/controllers/TaskController.js"></script>
 
     <script> const taskController = new TaskController(); </script>
     
