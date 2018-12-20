@@ -12,7 +12,7 @@
     
     <div id="messageView"></div>
 
-    <form class="form" onsubmit="negociacaoController.addTask(event)">
+    <form class="form" onsubmit="taskController.addTask(event)">
         
         <div class="form-group">
             <label for="date">Data</label>
@@ -40,10 +40,10 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.importTasks()">
+        <button class="btn btn-primary text-center" type="button" onclick="taskController.importTasks()">
             Importar tarefas
         </button>
-        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.emptiesTaskList()">
+        <button class="btn btn-primary text-center" type="button" onclick="taskController.emptiesTaskList()">
             Apagar
         </button>
     </div> 
@@ -63,7 +63,7 @@
     <script src="js/app/services/TaskService.js"></script>
     <script src="js/app/enums/PriorityEnum.js"></script>
     <script src="js/app/views/View.js"></script>
-    <script src="js/app/views/TaskView.js"></script>
+    <script src="js/app/views/TaskListView.js"></script>
     <script src="js/app/views/MessageView.js"></script>
     <script src="js/app/models/Task.js"></script>
     <script src="js/app/models/TaskList.js"></script>
@@ -71,7 +71,7 @@
     <script src="js/app/services/ProxyFactory.js"></script>
     <script src="js/app/controllers/TaskController.js"></script>
 
-    <script> const negociacaoController = new TaskController(); </script>
+    <script> const taskController = new TaskController(); </script>
     
 </body>
 </html>
