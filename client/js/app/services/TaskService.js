@@ -1,43 +1,30 @@
 class TaskService {
 
-    importTasks(callback) {
-        const xhr = new XMLHttpRequest();
-
-        xhr.open('GET', 'tarefas');
-
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState == 4) {
-
-                if(xhr.status == 200) {
-                    const taskList = JSON.parse(xhr.responseText)
-                        .map(task => new Task(new Date(task.date), task.name, task.priority, task.done));
-                    
-                    callback(null, taskList);
-                } else {
-                    console.error(xhr.responseText);
-                    cb('Não foi possível obter as tarefas', null);
-                }  
-            }
-        }
-        xhr.send();
+    constructor() {
+        this._http = new HttpService();
     }
 
-    addTask(newTask, callback) {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/tarefas", true);
-        xhr.setRequestHeader("Content-type", "application/json");
+    importTasks() {
+        return this._http.get('tarefas').then(response => {
+            const taskList = 
+                response
+                    .map(task => new Task(new Date(task.date), task.name, task.priority, task.done));
 
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    const task = new Task(new Date(response.date), response.name, response.priority, response.done);
-                    callback(null, task);
-                } else {
-                    callback('Não foi possível criar a tarefa', xhr.responseText);
-                }
-            }
-        }
-        xhr.send(JSON.stringify(newTask));
+                return taskList;
+        })
+        .catch(error => {
+            const errorParsed = JSON.parse(error);
+            throw new Erro(errorParsed);
+        });
+    }
+
+    addTask(newTask) {
+
+        return this._http.post('/tarefas', newTask, false, new Header('Content-type', 'application/json'))
+            .then(response => new Task(new Date(response.date), response.name, response.priority, response.done))
+            .catch(error => {
+                const errorParsed = JSON.parse(error);
+                throw new Erro(errorParsed);
+            });
     }
 }
