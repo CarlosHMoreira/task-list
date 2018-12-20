@@ -14,7 +14,7 @@ class TaskController {
         this._taskList = new Bind(
             new TaskList(), 
             new TaskListView($('#taskView')), 
-            'addTask', 'emptiesList'
+            'addTask', 'emptiesList', 'orderColumn'
         );
         
         this._message = new Bind(
@@ -81,5 +81,9 @@ class TaskController {
             this._updateMessage('Tarefas importadas com sucesso');
         })
         .catch(error => this._updateMessage(error));
+    }
+
+    orderColumn(columnName) {
+        this._taskList.orderColumn((a, b) => a[columnName] - b[columnName]);
     }
 }
