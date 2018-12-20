@@ -1,8 +1,8 @@
 class Message {
 
-    constructor(text='') {
+    constructor(text) {
 
-        this._text = text;
+        this._text = text || ''; //Using this way for the compatibility with olders brownser to default params
     }
 
     get text() {

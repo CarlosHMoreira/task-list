@@ -1,10 +1,10 @@
 class Task {
-    constructor(date, name, priority, done = false, dateFinished = null) {
+    constructor(date, name, priority, done, dateFinished) {
         this._date = new Date(date);
         this._name = name;
         this._priority = priority;
-        this._done = done;
-        this._dateFinished = dateFinished;
+        this._done = done || false;
+        this._dateFinished = dateFinished || null;
         Object.freeze(this);
     }
 
