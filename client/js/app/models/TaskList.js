@@ -18,4 +18,8 @@ class TaskList {
     totalFinished() {
         return this._tasks.reduce((count, task) => task.done ? ++count : count, 0)
     }
+
+    orderColumn(criteria) {
+        this._tasks.sort(criteria);
+    }
 }
