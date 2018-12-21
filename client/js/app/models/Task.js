@@ -35,5 +35,4 @@ class Task {
         this._done = true;
         this._dateFinished = new Date();
     }
-
 }
