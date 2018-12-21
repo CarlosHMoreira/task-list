@@ -21,7 +21,10 @@ class TaskService {
     addTask(newTask) {
 
         return this._http.post('/tarefas', newTask, false, new Header('Content-type', 'application/json'))
-            .then(response => new Task(new Date(response.date), response.name, response.priority, response.done))
+            .then(response => { 
+                return new Task(new Date(response._date), response._name, response._priority, response._done)
+            })
+            
             .catch(error => {
                 const errorParsed = JSON.parse(error);
                 throw new Erro(errorParsed);
