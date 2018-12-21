@@ -35,7 +35,7 @@ class HttpService {
 
                 if(xhr.readyState === xhr.DONE) {
 
-                    if(xhr.statusText == 'OK') {
+                    if(xhr.status >= 200 && xhr.status < 300) {
                        resolve(this._changeResponseType(responseType, xhr.response));
                     } else {
                         console.error(xhr.response);
@@ -43,7 +43,7 @@ class HttpService {
                     }  
                 }
             };
-
+            
             xhr.send(JSON.stringify(data));
         });
     }
