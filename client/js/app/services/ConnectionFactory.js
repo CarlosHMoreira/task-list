@@ -4,7 +4,10 @@ const ConnectionFactory = (function() {
     const stores = ['task-list-store'];
     const version = 1;
     const dbName = 'task-list-idb';
-    let connection = null; 
+    
+    let fnCloseConnection = null;
+    let connection = null;
+
 
     return class ConnectionFactory {
 
@@ -24,7 +27,15 @@ const ConnectionFactory = (function() {
                 };
                 
                 openRequest.onsuccess = e => {  
-                    if(!connection) connection = e.target.result; 
+                    if(!connection) {
+                        connection = e.target.result; 
+                        // Monkey Patch - Forced API change.
+                        fnCloseConnection = connection.close.bind(connection);
+                        connection.close = function() {
+                            throw new Error('You can not close a connection this way.');
+                      };
+
+                    } 
                     resolve(connection); 
                 };
                 
@@ -34,6 +45,14 @@ const ConnectionFactory = (function() {
                     reject(e.target.error.name); 
                 };
             });
+        }
+
+        static closeConnection() {
+
+            if(connection) {
+                fnCloseConnection();
+                connection = null;
+            }
         }
 
         static _createStores(connection) {
