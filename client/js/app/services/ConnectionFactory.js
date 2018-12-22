@@ -1,7 +1,7 @@
 // Module Pattern
 const ConnectionFactory = (function() {
 
-    const stores = ['task-list-store'];
+    const stores = ['task-store'];
     const version = 1;
     const dbName = 'task-list-idb';
     
@@ -36,6 +36,7 @@ const ConnectionFactory = (function() {
                       };
 
                     } 
+
                     resolve(connection); 
                 };
                 
