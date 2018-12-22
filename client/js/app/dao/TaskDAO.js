@@ -54,4 +54,20 @@ class TaskDAO {
             }
         });
     }
+
+    emptiesList() {
+        return new Promise((resolve, reject) => {
+            const request = this._connection
+                .transaction([this._store], 'readwrite')
+                .objectStore(this._store)
+                .clear();
+            
+            request.onsuccess = event => resolve('Tasks removed');
+
+            request.onerror = event => {
+                console.log(event.target.error);
+                reject('Error when trying to remove tasks from IDB');
+            };
+        });
+    }
 }

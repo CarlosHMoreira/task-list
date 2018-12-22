@@ -19,7 +19,6 @@ class TaskService {
     }
 
     addTask(newTask) {
-
         return this._http.post('/tarefas', newTask, false, new Header('Content-type', 'application/json'))
             .then(response => { 
                 return new Task(new Date(response._date), response._name, response._priority, response._done)
@@ -29,5 +28,26 @@ class TaskService {
                 const errorParsed = JSON.parse(error);
                 throw new Erro(errorParsed);
             });
+    }
+
+    emptiesListFromIDB() {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TaskDAO(connection))
+            .then(dao => dao.emptiesList());
+    }
+    
+    getTasksFromIDB() {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TaskDAO(connection))
+            .then(dao => dao.listTaks());
+    }
+
+    addTaskInIDB(task) {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TaskDAO(connection))
+            .then(dao => dao.addTask(task));
     }
 }

@@ -24,22 +24,17 @@ class TaskController {
         );
 
         this._service = new TaskService();
-        this._getTasksFromIDB();
-    }
-
-    _getTasksFromIDB() {
-        ConnectionFactory
-            .getConnection()
-            .then(connection => new TaskDAO(connection))
-            .then(dao => dao.listTaks())
+        this._service
+            .getTasksFromIDB()
             .then(taskList => taskList.tasks.forEach(task => this._taskList.addTask(task)))
             .catch(error => {
                 console.log(error);
                 this._updateMessage('Something went wrong...');
             });
     }
-    
 
+    
+    
     _createTask() {
         return new Task(
             DateHelper.stringToDate(this._inputDate.value),
@@ -47,53 +42,64 @@ class TaskController {
             this._inputPriority.value
         );
     }
-
+        
     _clearForm() {
         this._inputDate.value = '';
         this._inputName.value = '';
         this._inputPriority.value = 0;
-    
+        
         this._inputDate.focus();
     }
-
+    
     _updateMessage(text='') {
         this._message.text = text;
         setTimeout(() => {
             this._updateMessage();
         }, 3000);
     }
-
+    
     addTask(event) {
         event.preventDefault();
-        // Using try-catch because DateHelper can throw exception
+        // Using try-catch because DateHelper may throw exception
         try {
             this._service
-            .addTask(this._createTask())
-            .then( taskCreated => {
-                this._taskList.addTask(taskCreated);
-                this._clearForm();
-                this._updateMessage("Tarefa adicionada com sucesso.");
-            })
-            .catch(error => this._updateMessage(error));
+                .addTask(this._createTask())
+                .then( taskCreated => {
+                    this._taskList.addTask(taskCreated);
+                    this._service
+                        .addTaskInIDB(taskCreated)
+                        .catch(errorMessage => Promise.reject(errorMessage));
+                    this._clearForm();
+                    this._updateMessage("Tarefa adicionada com sucesso.");
+                })
+                .catch(error => this._updateMessage(error));
         } catch(error) {
             this._updateMessage(error);
         }
     }
-
-    emptiesTaskList() {
-        this._taskList.emptiesList();
-        this._updateMessage('Tarefas removidas com sucesso.');
-    }
-
-    importTasks() {
-       this._service.importTasks().then(tasks => {
     
+    /**
+     * @todo Maybe erase tasks from db too
+     */
+    emptiesTaskList() {
+        this._service
+            .emptiesListFromIDB()
+            .then(sucessMessage => {
+                this._taskList.emptiesList();
+                this._updateMessage('Tarefas removidas com sucesso.');
+            })
+            .catch(errorMessage => this._updateMessage(errorMessage));;
+    }
+    
+    importTasks() {
+        this._service.importTasks().then(tasks => {
+            
             tasks.forEach(task => this._taskList.addTask(task));
             this._updateMessage('Tarefas importadas com sucesso');
         })
         .catch(error => this._updateMessage(error));
     }
-
+    
     orderColumn(columnName) {
         this._taskList.orderColumn((a, b) => a[columnName] - b[columnName]);
     }
