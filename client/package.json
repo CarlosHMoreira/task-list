@@ -1,0 +1,31 @@
+{
+  "name": "task-list",
+  "version": "1.0.0",
+  "description": "A project to test JS Design Patterns and techniques",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel ./js/app-es6 -d ./js/app --source-maps",
+    "watch": "babel ./js/app-es6 -d ./js/app --source-maps --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMoreira/task-list.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "JS",
+    "DesignPatterns",
+    "TaskList"
+  ],
+  "author": "Carlos Henrique da Silva Moreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KMoreira/task-list/issues"
+  },
+  "homepage": "https://github.com/KMoreira/task-list#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
