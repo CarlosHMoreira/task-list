@@ -1,16 +1,16 @@
 class TaskController {
 
     constructor() {
-       this._onInit();
-    }
-
-    _onInit() {
         let $ = document.querySelector.bind(document);
 
         this._inputDate = $('#date');
         this._inputName = $('#name');
         this._inputPriority = $('#priority');
 
+       this._onInit();
+    }
+
+    _onInit() {
         this._taskList = new Bind(
             new TaskList(), 
             new TaskListView($('#taskView')), 
