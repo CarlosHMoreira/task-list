@@ -24,7 +24,21 @@ class TaskController {
         );
 
         this._service = new TaskService();
+        this._getTasksFromIDB();
     }
+
+    _getTasksFromIDB() {
+        ConnectionFactory
+            .getConnection()
+            .then(connection => new TaskDAO(connection))
+            .then(dao => dao.listTaks())
+            .then(taskList => taskList.tasks.forEach(task => this._taskList.addTask(task)))
+            .catch(error => {
+                console.log(error);
+                this._updateMessage('Something went wrong...');
+            });
+    }
+    
 
     _createTask() {
         return new Task(
