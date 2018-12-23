@@ -1,4 +1,4 @@
-class TaskList {
+export class TaskList {
     constructor() {
         this._tasks = [];
     }

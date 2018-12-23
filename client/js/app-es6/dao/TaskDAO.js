@@ -1,4 +1,4 @@
-class TaskDAO {
+export class TaskDAO {
 
     constructor(connection) {
         this._connection = connection;

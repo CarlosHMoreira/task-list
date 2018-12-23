@@ -1,4 +1,8 @@
-class TaskService {
+import { HttpService } from './HttpService';
+import { ConnectionFactory } from './ConnectionFactory';
+import { TaskDAO } from '../dao/TaskDAO';
+
+export class TaskService {
 
     constructor() {
         this._http = new HttpService();

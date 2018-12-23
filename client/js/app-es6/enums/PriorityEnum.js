@@ -1,4 +1,4 @@
-const PriorityEnum =  {
+export const PriorityEnum =  {
     0: 'Urgente',
     1: 'Urgente',
     2: 'Logo',

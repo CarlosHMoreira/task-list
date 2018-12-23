@@ -1,4 +1,7 @@
-class TaskListView extends View {
+import { View } from './View'
+import { PriorityEnum } from '../enums/PriorityEnum'
+
+export class TaskListView extends View {
 
     template(model) {
         return `

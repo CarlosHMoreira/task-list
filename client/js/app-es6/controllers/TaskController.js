@@ -1,5 +1,10 @@
 const $ = document.querySelector.bind(document);
 
+import { Message, Task, TaskList } from '../models';
+import { MessageView, TaskListView } from '../views'
+import { TaskService } from '../services';
+import { Bind, DateHelper } from '../helpers';
+
 class TaskController {
 
     constructor() {
